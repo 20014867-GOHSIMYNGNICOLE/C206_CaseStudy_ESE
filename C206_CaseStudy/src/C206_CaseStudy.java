@@ -12,9 +12,9 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		
 	}
-	public void menu() {
-		System.out.println("Register for a tuition");
-		System.out.println("View all registrations");
-		System.out.println("Delete registration");
+	public void RegistrationMenu() {
+		System.out.println("1.Register for a tuition");
+		System.out.println("2.View all registrations");
+		System.out.println("3.Delete registration");
 	}
 }
