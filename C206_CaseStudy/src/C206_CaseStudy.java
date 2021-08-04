@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * We declare that this code was written by us.
  * We will not copy or allow others to copy our code.
@@ -7,11 +9,7 @@
  */
 
 public class C206_CaseStudy {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	public void RegistrationMenu() {
 		//ravi
 		System.out.println("1.Register for a tuition");
