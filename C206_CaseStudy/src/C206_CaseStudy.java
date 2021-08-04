@@ -16,5 +16,13 @@ public class C206_CaseStudy {
 		System.out.println("2.View all registrations");
 		System.out.println("3.Delete registration");
 	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 	
 }
