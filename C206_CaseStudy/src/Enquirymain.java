@@ -60,7 +60,7 @@ public class Enquirymain {
 						else if (enquiryOption == 3) {
 							//Delete Enquiry
 							Enquirymain.setHeader("DELETE ENQUIRY");
-							Enquirymain.deleteEnquiry(enquiryList);
+							Enquirymain.doDeletionEnquiry(enquiryList, enquiryOption);
 						}
 						else if (enquiryOption == 4) {
 							Enquirymain.menu();
