@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 public class TuitionMain {
 	private static final int OPTION_QUIT = 4;
+	
 	public static void main(String[] args) {
-		
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
+		tuitionList.add(new Tuition("TT01", "Marketing", "GroupA", "Marketing for biz", "1 hour", "No", "HBL"));
+		tuitionList.add(new Tuition("TT02", "ESports", "GroupB", "Athletes", "3 hour", "Good in technology", "School"));
 		
 		int option = 0;
 
@@ -110,7 +112,7 @@ public class TuitionMain {
 		String output = "";
 		
 		for (int i = 0; i < tuitionList.size(); i++) {
-			output += String.format("%-120s\n", tuitionList.get(i).toString());
+			output += String.format("%-120s", tuitionList.get(i).toString());
 		}
 		return output;
 	}

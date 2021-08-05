@@ -6,7 +6,7 @@
  *
  * 19028074, 4 Aug 2021 11:31:09 pm
  */
-
+//done by nehla 
 public class Enquiry {
 
 	private int enquiryId;
