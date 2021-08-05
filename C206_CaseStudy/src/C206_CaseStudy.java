@@ -22,6 +22,38 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	/**
+	 * @param enquiryList
+	 * @return
+	 */
+	public static String viewEnquiry(Object enquiryList) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+
+	/**
+	 * @param enquiryList
+	 * @param e1
+	 */
+	public static void addEnquiry(ArrayList<Enquiry> enquiryList, Enquiry e1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	/**
+	 * @param enquiryList
+	 * @param i
+	 * @return
+	 */
+	public static Boolean deleteEnquiry(ArrayList<Enquiry> enquiryList, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 	
