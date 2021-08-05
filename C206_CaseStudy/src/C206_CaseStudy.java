@@ -67,6 +67,43 @@ public class C206_CaseStudy {
 			}
 			else if (option == 2) {
 				//Tuition Manager
+				//done by nehla
+			/*	int enquiryOption = 0;
+				Enquirymain.setHeader("TUITION MANAGER");
+								while (enquiryOption != OPTION_QUIT) {
+									
+									Enquirymain.EnquiryMenu();
+									enquiryOption = Helper.readInt("Enter the option> ");
+									Helper.line(80, "-");
+									
+									if(enquiryOption == 1) {
+										//View Enquiry
+										Enquirymain.setHeader("VIEW ENQUIRY");
+										Enquirymain.viewAllEnquiry(enquiryList);
+									}
+
+									else if (enquiryOption == 2) {
+										
+				//Add New Tuition
+										Enquirymain.setHeader("ADD NEW ENQUIRY");
+										Enquiry en = inputEnquiry();
+										Enquirymain.addNewEnquiry(enquiryList, en);
+									}
+
+									else if (enquiryOption == 3) {
+										//Delete Enquiry
+										Enquirymain.setHeader("DELETE ENQUIRY");
+										Enquirymain.deleteEnquiry(enquiryList);
+									}
+									else if (enquiryOption == 4) {
+										Enquirymain.menu();
+										option = Helper.readInt("Enter an option > ");
+									}
+									else {
+										System.out.println("Invalid option entered");
+									}
+								}
+								*/
 			}
 			else if (option == 3) {
 				//Student
@@ -78,8 +115,28 @@ public class C206_CaseStudy {
 			else {
 				System.out.println("Invalid option");
 			}
-		}
+		} 
+	
+	}	
+
+	public static String viewEnquiry(Object enquiryList) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
+
+
+	public static void addEnquiry(ArrayList<Enquiry> enquiryList, Enquiry e1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static Boolean deleteEnquiry(ArrayList<Enquiry> enquiryList, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+//=======
 	//MAIN MAIN MENU (TUITION MANAGEMENT SYSTEM - LOGIN MENU)
 	public static void mainTMMenu() {
 		TuitionMain.setHeader("TUITION MANAGEMENT APP");
@@ -91,6 +148,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 }
+
 	
 
 	
