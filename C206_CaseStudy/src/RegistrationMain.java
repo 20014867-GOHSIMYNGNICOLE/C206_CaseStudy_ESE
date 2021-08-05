@@ -21,7 +21,7 @@ public class RegistrationMain {
 			menu();
 			option = Helper.readInt("Enter an option > ");
 			if(option==1) {
-				//Add New Registration
+				//Add New Registration -
 				RegistrationMain.setHeader("ADD NEW Registration");
 				Registration r1 = inputRegistration();
 				RegistrationMain.addNewRegistration(registrationList,r1);
