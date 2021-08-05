@@ -17,7 +17,7 @@ import org.junit.Test;
  * I will not copy or allow others to copy my code.
  * I understand that copying code is considered as plagiarism.
  *
- * Ravichandran_Sunthereswaran, 4 Aug 2021 11:54:38 am -
+ * Ravichandran_Sunthereswaran, 4 Aug 2021 11:54:38 am 
  */
 
 public class RegistrationMainTest {
