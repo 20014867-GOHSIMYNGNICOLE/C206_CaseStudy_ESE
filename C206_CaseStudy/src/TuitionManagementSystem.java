@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class TuitionManagementSystem {
 	
-	public static final int OPTION_QUIT = 4;
+	public static final int OPTION_QUIT = 5;
 	
 	
 
@@ -47,6 +47,11 @@ public class TuitionManagementSystem {
 			}
 			
 			else if (option == 4) {
+				//Update student account
+				TuitionManagementSystem.updateStudentAcc(StudentList);
+			}
+			
+			else if (option == 5 ) {
 				System.out.println("Bye!");
 			}
 			
@@ -63,7 +68,8 @@ public class TuitionManagementSystem {
 		System.out.println("1. Register Student Account");
 		System.out.println("2. View Student Account");
 		System.out.println("3. Delete Student Account");
-		System.out.println("4. Quit for System");
+		System.out.println("4. Update Student Account");
+		System.out.println("5. Quit for System");
 		Helper.line(100, "-");
 		
 	}
@@ -86,8 +92,9 @@ public class TuitionManagementSystem {
 		}
 		String dob = Helper.readString("Enter your dob (Format(ddMMMyy))> ");
 		String cor = Helper.readString("Enter your country of Residence> ");
+		String feedback = "";
 
-		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor);
+		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor, feedback);
 		return sa;
 	}
 	
@@ -139,6 +146,19 @@ public class TuitionManagementSystem {
 		}else {
 			System.out.println("***" + Name + " is deleted!");
 		}
+	}
+	
+	public static StudentAccount doUpdateStudentAccount() {
+		String feedback = Helper.readString("Give your feedback: ");
+		
+		
+		StudentAccount
+
+		
+	}
+	
+	public static void updateStudentAccount (ArrayList<StudentAccount> StudentList) {
+		
 	}
 	 
 	

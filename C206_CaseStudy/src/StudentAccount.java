@@ -15,14 +15,16 @@ public class StudentAccount {
 	private String email;
 	private String dob;
 	private String cor;
+	private String feedback;
 	
-	public StudentAccount(String name, String gender, int mobile, String email, String dob, String cor) {
+	public StudentAccount(String name, String gender, int mobile, String email, String dob, String cor, String feedback) {
 		this.name = name;
 		this.gender = gender;
 		this.mobile = mobile;
 		this.email = email;
 		this.dob = dob;
 		this.cor = cor;
+		this.feedback = feedback;
 	}
 	
 	public String toString() {
@@ -57,6 +59,10 @@ public class StudentAccount {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getFeedback() {
+		return feedback;
 	}
 
 }
