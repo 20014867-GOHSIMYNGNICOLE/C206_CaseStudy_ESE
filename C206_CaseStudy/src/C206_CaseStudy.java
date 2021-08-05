@@ -117,14 +117,8 @@ public class C206_CaseStudy {
 			}
 		} 
 	
-		
-<<<<<<< HEAD
+	}	
 
-
-	/**
-	 * @param enquiryList
-	 * @return
-	 */
 	public static String viewEnquiry(Object enquiryList) {
 		// TODO Auto-generated method stub
 		
@@ -132,21 +126,12 @@ public class C206_CaseStudy {
 	}
 
 
-	/**
-	 * @param enquiryList
-	 * @param e1
-	 */
 	public static void addEnquiry(ArrayList<Enquiry> enquiryList, Enquiry e1) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	/**
-	 * @param enquiryList
-	 * @param i
-	 * @return
-	 */
 	public static Boolean deleteEnquiry(ArrayList<Enquiry> enquiryList, int i) {
 		// TODO Auto-generated method stub
 		return null;
@@ -163,7 +148,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 }
->>>>>>> branch 'master' of https://github.com/20014867-GOHSIMYNGNICOLE/C206_CaseStudy_ESE
+
 	
 
 	
