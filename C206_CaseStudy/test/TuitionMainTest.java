@@ -72,14 +72,13 @@ public class TuitionMainTest {
 		TuitionMain.addNewTuition(tuitionList, ntt2);
 		assertEquals("Test that Tuition arraylist size is 2", 2, tuitionList.size());
 		
-		/*
 		//test if the expected output string same as the list of tuitions retrieved from the SourceCentre	
 		allTuition = TuitionMain.retrieveTuition(tuitionList);
 		testOutput = String.format("%-15s %-20s %-20s %-20s %-15s %-20s %-10s\n","TT01", "Marketing", "GroupA", "Marketing for biz", "1 hour", "No", "HBL");
 		testOutput += String.format("%-15s %-20s %-20s %-20s %-15s %-20s %-10s\n","TT02", "ESports", "GroupB", "Athletes", "3 hour", "Good in technology", "School");
 	
 		assertEquals("Test that ViewAllTuition", testOutput, allTuition);
-		*/
+		
 	}
 	
 
@@ -87,7 +86,6 @@ public class TuitionMainTest {
 	public void doDeletionTuition() {
 		//boundary
 		assertNotNull("test if there is valid Tuition arraylist to delete from", tuitionList);
-		
 		TuitionMain.addNewTuition(tuitionList, ntt1);
 		// normal
 		Boolean ok = TuitionMain.doDeletionTuition(tuitionList, "TT01", 'Y');
