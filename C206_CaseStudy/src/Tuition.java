@@ -15,6 +15,7 @@ public class Tuition {
 	private String duration;
 	private String preRequisite;
 	private String mode;
+	private String remark;
 	
 	public Tuition(String tuitionCode, String title, String groupName, String description, String duration,
 			String preRequisite, String mode) {
@@ -25,6 +26,18 @@ public class Tuition {
 		this.duration = duration;
 		this.preRequisite = preRequisite;
 		this.mode = mode;
+	}
+	
+	public Tuition(String tuitionCode, String title, String groupName, String description, String duration,
+			String preRequisite, String mode, String remark) {
+		this.tuitionCode = tuitionCode;
+		this.title = title;
+		this.groupName = groupName;
+		this.description = description;
+		this.duration = duration;
+		this.preRequisite = preRequisite;
+		this.mode = mode;
+		this.remark = remark;
 	}
 
 	public String getTuitionCode() {
@@ -82,7 +95,15 @@ public class Tuition {
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
-	
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	public String toString() {
 		String output = String.format("%-15s %-20s %-20s %-20s %-15s %-20s %-10s\n", 
 				tuitionCode,
@@ -92,6 +113,19 @@ public class Tuition {
 				duration,
 				preRequisite,
 				mode);
+		return output;
+	}
+	
+	public String toString2() {
+		String output = String.format("%-15s %-20s %-20s %-20s %-15s %-20s %-10s %-25s\n", 
+				tuitionCode,
+				title,
+				groupName,
+				description,
+				duration,
+				preRequisite,
+				mode,
+				remark);
 		return output;
 	}
 }
