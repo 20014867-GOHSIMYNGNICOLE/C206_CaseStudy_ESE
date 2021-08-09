@@ -13,8 +13,11 @@ public class TuitionMain {
 	
 	public static void main(String[] args) {
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
-		tuitionList.add(new Tuition("TT01", "Marketing", "GroupA", "Marketing for biz", "1 hour", "No", "HBL"));
-		tuitionList.add(new Tuition("TT02", "ESports", "GroupB", "Athletes", "3 hour", "Good in technology", "School"));
+		
+		tuitionList.add(new Tuition("TT01", "Marketing", "GroupA", "Marketing for biz", "1 hour", "No", "online"));
+		tuitionList.add(new Tuition("TT02", "ESports", "GroupB", "Athletes", "3 hour", "Good in technology", "f2f"));
+		tuitionList.add(new Tuition("TT03", "Health", "GroupC", "Nutrition", "2 hour", "basic science", "f2f", "f2f"));
+		tuitionList.add(new Tuition("TT04", "Technology", "GroupD", "techy", "5 hour", "java", "online", "online"));
 		
 		int option = 0;
 
@@ -27,7 +30,7 @@ public class TuitionMain {
 				//Tuition Administrator
 				int tuitionOption = 0;
 
-				while (tuitionOption != OPTION_QUIT) {
+				while (tuitionOption != 6) {
 					TuitionMain.setHeader("TUITION ADMINISTRATOR");
 					TuitionMain.TuitionMenu();
 					tuitionOption = Helper.readInt("Enter the option: ");
@@ -49,8 +52,37 @@ public class TuitionMain {
 						TuitionMain.deleteTuition(tuitionList);
 					}
 					else if (tuitionOption == 4) {
-						TuitionMain.mainTMMenu();
-						option = Helper.readInt("Enter an option > ");
+						//Update Tuition mode and add remarks
+						TuitionMain.setHeader("UPDATE TUITION MODE");
+						String tuitionCode = Helper.readString("Enter tuition code: ");
+						String mode = Helper.readString("Mode for tuition (F2F/Online): ");
+						String remark = Helper.readString("Please indicated in the remarks\n(F2F/Online):");
+						TuitionMain.updateTuition(tuitionList, tuitionCode, mode, remark);
+					}
+					else if (tuitionOption == 5) {
+						//View tuition by modes
+						TuitionMain.setHeader("VIEW TUITION BY MODE");
+						TuitionMain.SearchByModeMenu();
+						int tModeOption = 0;
+						
+						while (tModeOption != 3) {
+							tModeOption = Helper.readInt("Enter an option > ");
+							
+							if(tModeOption == 1) {
+								//Face-to-Face mode
+								TuitionMain.viewSearchedTuition(tuitionList,1);
+							}
+							else if(tModeOption == 2) {
+								//Online mode
+								TuitionMain.viewSearchedTuition(tuitionList,2);
+							}
+							else if(tModeOption == 3) {
+								System.out.println("Bye!");
+							}
+						}
+					}
+					else if (tuitionOption == 6) {
+						System.out.println("Bye!");
 					}
 					else {
 						System.out.println("Invalid option entered");
@@ -80,7 +112,16 @@ public class TuitionMain {
 		System.out.println("1. Add New Tuition");
 		System.out.println("2. View Tuition");
 		System.out.println("3. Delete Tuition");
-		System.out.println("4. Back to Home Page");
+		System.out.println("4. Update Tuition");
+		System.out.println("5. Search Tuition by Modes");
+		System.out.println("6. Back to Home Page");
+	}
+	
+	public static void SearchByModeMenu() {
+		TuitionMain.setHeader("Tuition modes:");
+		System.out.println("1. By Face-to-Face(F2F)");
+		System.out.println("2. Online");
+		System.out.println("3. Quit");
 	}
 	
 	public static void setHeader(String header) {
@@ -97,7 +138,8 @@ public class TuitionMain {
 		String description = Helper.readString("Enter the description of the tuition: ");
 		String duration = Helper.readString("Enter the tuition duration: ");
 		String pRequisite = Helper.readString("Any Pre-Requisite?: ");
-		String mode = Helper.readString("Mode for tuition: ");
+		String mode = Helper.readString("Mode for tuition (F2F/Online): ");
+		
 		
 		Tuition ntt = new Tuition(tCode, title, gName, description, duration, pRequisite, mode);
 		return ntt;
@@ -155,6 +197,74 @@ public class TuitionMain {
 			System.out.println("Tuition (" + tuitionCode + ") is deleted");
 		}
 	}
+	
+	//======= Option 4: Update Tuition ============ Sprint 2
+		public static boolean doUpdateTuition(ArrayList<Tuition> tuitionList, String tuitionCode, String mode, String remark) {
+			boolean isUpdated = false;
+
+			for (int i=0; i< tuitionList.size(); i++) {
+				String tCode = tuitionList.get(i).getTuitionCode();
+				String modeU = mode.toLowerCase();
+				
+				if (tuitionCode.equalsIgnoreCase(tCode)				
+						&& modeU.equals("online")) {
+					tuitionList.get(i).setMode("online");
+					tuitionList.get(i).setRemark(remark);
+					isUpdated = true;
+				}
+				else if(tuitionCode.equalsIgnoreCase(tCode)				
+						&& modeU.equals("f2f")) {
+					tuitionList.get(i).setMode("online");
+					tuitionList.get(i).setRemark(remark);
+					isUpdated = true;
+				}
+				
+			}
+			return isUpdated;
+		}
+
+		public static void updateTuition(ArrayList<Tuition> tuitionList, String tuitionCode, String mode, String remark) {
+			TuitionMain.viewAllTuition(tuitionList);
+			
+			Boolean isUpdated = doUpdateTuition(tuitionList, tuitionCode, mode, remark);
+			if (isUpdated == false) {
+				System.out.println("Invalid tuition code");
+			} else {
+				System.out.println("Tuition (" + tuitionCode + ") is updated");
+			}
+		}
+		
+		//======= Option 5: Search Tuition By Modes ============ Sprint 2
+		public static String retrieveSearchTuition(ArrayList<Tuition> tuitionList, int tModeOption) {
+			String output = "";
+			
+			if(tModeOption == 1) {
+				for (int i=0; i<tuitionList.size(); i++) {
+					if(tuitionList.get(i).getMode().equalsIgnoreCase("f2f")) {
+						output += String.format("%-145s", tuitionList.get(i).toString2());
+					}
+				}
+			}
+			else if (tModeOption == 2) {
+				for (int i=0; i<tuitionList.size(); i++) {
+					if(tuitionList.get(i).getMode().equalsIgnoreCase("online")) {
+						output += String.format("%-145s", tuitionList.get(i).toString2());
+					}
+				}
+			}
+			
+			return output;
+		}
+		public static void viewSearchedTuition(ArrayList<Tuition> tuitionList, int tModeOption) {
+			
+			TuitionMain.setHeader("TUITION LIST");
+			String output = String.format("%-15s %-20s %-20s %-20s %-15s %-20s %-10s %-25s\n", 
+					"TUITION CODE", "TITLE", "GROUP NAME", "DESCRIPTION",
+					"DURATION", "PRE-REQUISITE", "MODE", "REMARKS");
+			output += retrieveSearchTuition(tuitionList, tModeOption);
+			System.out.println(output);
+		}
+	
 //============================================= NICOLE - END =================================================
 
 

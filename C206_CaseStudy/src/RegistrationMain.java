@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 public class RegistrationMain {
-	private static final int OPTION_QUIT = 4;
+	private static final int OPTION_QUIT = 5;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Registration> registrationList=new ArrayList<Registration>();
@@ -36,7 +36,12 @@ public class RegistrationMain {
 				RegistrationMain.setHeader("DELETE REGISTRATION");
 				RegistrationMain.deleteRegistration(registrationList);
 			}
-			if(option!=1&&option!=2&&option!=3) {
+			if(option==4) {
+				RegistrationMain.setHeader("SEARCH REGISTRATION");
+				int regid=Helper.readInt("Enter Registration ID > ");
+				RegistrationMain.viewSearchedRegistration(registrationList, regid);
+			}
+			else if(option!=1&&option!=2&&option!=3&&option!=4) {
 				System.out.println("Invalid option entered!");
 				Helper.line(80, "-");
 			}
@@ -48,7 +53,8 @@ public class RegistrationMain {
 		System.out.println("1. Register for a tuition timetable");
 		System.out.println("2. View all Registrations");
 		System.out.println("3. Delete Registration");
-		System.out.println("4. Quit");
+		System.out.println("4. Search Registration");
+		System.out.println("5. Quit");
 	}
 	public static String obscure(String inStr) {
 		String rtnVal = "";
@@ -88,15 +94,20 @@ public class RegistrationMain {
 		String output = "";
 		
 		for (int i = 0; i < registrationList.size(); i++) {
-			output += String.format("%-25d %-20d %-40s %-15s %s\n", registrationList.get(i).getRegistrationid(),registrationList.get(i).getTuitiontimetableid(),
-					obscure(registrationList.get(i).getStudentemail()),registrationList.get(i).getStatus(),registrationList.get(i).getRegistrationdate());
+			output += String.format("%-25d %-20d %-40s %-15s %s\n",
+					registrationList.get(i).getRegistrationid()
+					,registrationList.get(i).getTuitiontimetableid(),
+					obscure(registrationList.get(i).getStudentemail())
+					,registrationList.get(i).getStatus(),
+					registrationList.get(i).getRegistrationdate());
 		}
 		return output;
 	}
 	public static void viewAllRegistration(ArrayList<Registration> registrationList) {
 		
 		RegistrationMain.setHeader("Registration List");
-		String output = String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID","Timetable ID",
+		String output = String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID"
+				,"Timetable ID",
 				"Email","Status","Date");
 		 output += retrieveRegistration(registrationList);
 		System.out.println(output);
@@ -118,7 +129,8 @@ public class RegistrationMain {
 		}
 		return isDeleted;
 	}
-
+	
+	
 	public static void deleteRegistration(ArrayList<Registration> registrationList) {
 		RegistrationMain.viewAllRegistration(registrationList);
 		int regid = Helper.readInt("Enter Registration ID to delete > ");
@@ -130,6 +142,37 @@ public class RegistrationMain {
 		} else {
 			System.out.println("Registration ID "+regid+" is deleted");
 		}
+	}
+	
+	//======= Option 4: Search Registration ============
+	public static String retrieveSearchRegistration(ArrayList<Registration> registrationList, int id) {
+		String output = "";
+		boolean found=false;
+			for (int i=0; i<registrationList.size(); i++) {
+				if(registrationList.get(i).getRegistrationid()==id) {
+					output += String.format("%-25d %-20d %-40s %-15s %s\n",
+							registrationList.get(i).getRegistrationid()
+							,registrationList.get(i).getTuitiontimetableid(),
+							obscure(registrationList.get(i).getStudentemail())
+							,registrationList.get(i).getStatus(),
+							registrationList.get(i).getRegistrationdate());
+					found=true;
+				}
+			}
+			if(found==false) {
+				output="Registration ID not found";
+			}
+		
+		return output;
+	}
+	public static void viewSearchedRegistration(ArrayList<Registration> registrationList, int regid) {
+		
+		RegistrationMain.setHeader("Registration List");
+		String output = String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID"
+				,"Timetable ID",
+				"Email","Status","Date");
+		output += retrieveSearchRegistration(registrationList, regid);
+		System.out.println(output);
 	}
 
 }
