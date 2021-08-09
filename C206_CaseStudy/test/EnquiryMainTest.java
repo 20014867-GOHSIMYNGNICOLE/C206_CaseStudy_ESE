@@ -70,8 +70,8 @@ public class EnquiryMainTest{
 				//Test if the expected output same as the list of enquiryList retrieved from the Enquirymain
 				allEnquiry = Enquirymain.viewAllEnquiry(enquiryList);
 				testOutput = String.format("");
-				testOutput = String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n", 1,"How to register", "2021-7-20", "09.15", "Email","Pending", "");
-				testOutput += String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n",2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed", "");
+				testOutput = String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n", 1,"How to register", "2021-7-20", "09.15", "Email","Pending", "online");
+				testOutput += String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n",2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed", "f2f");
 				
 			//	assertEquals("Test viewEnquiry", testOutput, allEnquiry);
 			
@@ -102,8 +102,60 @@ public class EnquiryMainTest{
 					assertFalse("Test that the same enquiry is NOT ok to be deleted again?",check);
 					
 		}
+		@Test
+		public void viewUrgentEnquiryTest() {
+			
+			//Test that the enquiry list is not null(Boundary)
+			assertNotNull("Test if there is an enquiry arraylist to retrieve ", enquiryList);
+			
+			//After adding 2 enquiry , list size should increase to 2(Normal)
+			Enquirymain.addNewEnquiry(enquiryList, en1);
+			Enquirymain.addNewEnquiry(enquiryList, en2);
+			
+			assertEquals("Test that the enquiry arrayList size is 2" , 2, enquiryList.size());
+			
+			//Test if Urgent enquiries are displayed as the output
+			String UrgentEnquiry =  String.format("%-15s %-20s %-15s %-15s %-20s %-10s %-10s\n", 1, "How to register", "2021-7-20", "09.15", "Email", "Pending","online", "Urgent");
+			String testOutput = String.format("%-15s %-20s %-15s %-15s %-20s %-10s %-10s\n", 1, "How to register", "2021-7-20", "09.15", "Email", "Pending","f2f", "Urgent");
+		
+			
+			//assertEquals("Test view urgent enquiries", testOutput, UrgentEnquiry);
+
+		
+		}
+		@Test
+		public void viewNonUrgentEnquiryTest() {
+			// Test the enquiry list is not null - (Boundary)
+			assertNotNull("Test if there is an enquiry arraylist to retrieve ", enquiryList);
+
+			// After adding 2 enquiry list size should increase to 2 -(Normal)
+			Enquirymain.addNewEnquiry(enquiryList, en1);
+			Enquirymain.addNewEnquiry(enquiryList, en2);
+			
+			assertEquals("Test that enquiry arraylist size is 2", 2, enquiryList.size());
+
+			// Test if output string displays Non-Urgent enquires
+		//	String NonUrgentEnquiry =  String.format("%-15d %-20s %-15s %-15s %-20s %-10s %-10s\n", 2, "Tuition Fee", "2021-7-5", "13.15", "Email", "Completed","Online",  "Non-Urgent");
+			//String testOutput = String.format("%-15d %-20s %-15s %-15s %-20s %-10s %-10s\n", 2, "Tuition Fee", "2021-7-5", "13.15", "Email", "Completed","f2f" , "Non-Urgent");
 		
 		
+			//assertEquals("Test view Non-Urgent enquiries", testOutput, NonUrgentEnquiry);
+
+		}
+		@Test
+		public void UpdateEnquiryStatusTest() {
+			//Test the list is not null - Boundary
+			assertNotNull("Test if there is valid enquiry arraylist to retrieve ", enquiryList);
+			
+			// Test if enquiry ID can be found -Normal
+			Enquirymain.addNewEnquiry(enquiryList, en1);
+			Boolean isFound = Enquirymain.UpdateEnquiryStatus(enquiryList, 1, "Processing");
+			assertTrue("Test if the enquiry id can be found", isFound);	
+			
+			Enquirymain.addNewEnquiry(enquiryList, en2);
+			isFound = Enquirymain.UpdateEnquiryStatus(enquiryList, 2, "Completed");
+			assertTrue("Test if the enquiry id can be found", isFound);
+		}
 		@After
 		public void tearDown() throws Exception {
 			en1 = null;
