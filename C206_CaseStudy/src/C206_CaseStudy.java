@@ -24,6 +24,8 @@ public class C206_CaseStudy {
 	private static ArrayList<Registration> registrationList=new ArrayList<Registration>();
 	//zu er - studentList
 	private static ArrayList <StudentAccount> StudentList = new ArrayList <StudentAccount>();
+	private static ArrayList<TuitionFeedback> TFeedback = new ArrayList <TuitionFeedback>();
+	private static ArrayList<UpcomingTuition> UTuition = new ArrayList <UpcomingTuition>();
 	
 	public static void main(String[] args) {
 		//nicole - test data 
@@ -35,7 +37,11 @@ public class C206_CaseStudy {
 		//nehla - test data
 		enquiryList.add(new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending", ""));
 		enquiryList.add(new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15","Email","Completed", ""));
-	
+		
+		//zu er - test data
+		UTuition.add(new UpcomingTuition("Alice", "C1", "Englisg Language", "25 Aug 2021"));
+		UTuition.add(new UpcomingTuition("Benny", "C2", "History", "31 Aug 2021"));
+		
 		int option = 0;
 
 		while (option != OPTION_QUIT) {
@@ -116,7 +122,7 @@ public class C206_CaseStudy {
 					//zu er - Students (manage)
 					else if (taOption == 2) {
 						int optionTMS = 0;
-						while (optionTMS != OPTION_QUIT) {
+						while (optionTMS != 5) {
 							
 							C206_CaseStudy.menuTMS();
 							optionTMS = Helper.readInt("Enter an option> ");
@@ -141,6 +147,58 @@ public class C206_CaseStudy {
 							}
 							
 							else if (optionTMS == 4) {
+								int optionMST = 0;
+								
+								while (optionMST != OPTION_QUIT) {
+									
+									C206_CaseStudy.menuMST();
+									optionMST = Helper.readInt("Enter an option> ");
+									
+									
+									if (optionMST == 1) {
+										//Update student account
+										TuitionFeedback tf = tuition();
+										C206_CaseStudy.updateStudentFeedback(TFeedback, tf);
+									}
+									
+									
+									else if (optionMST == 2 ) {
+										//Update student upcoming tuition
+										UpcomingTuition ut = Upcomingtuition();
+										C206_CaseStudy.updateStudentUpcomingTuition(UTuition, ut);
+									}
+									
+									else if (optionMST == 3 ) {
+										TuitionManagementSystem.setHeader("VIEW");
+										System.out.println("1. View Student Feedback");
+										System.out.println("2. View Upcoming Tuition");
+										
+										int choice = Helper.readInt("Enter option to select your choice > ");
+										
+										if (choice==1) {
+											C206_CaseStudy.viewFeedback(TFeedback);
+										}
+										else if (choice == 2) {
+											C206_CaseStudy.retrieveStudentUpcomingTuition(UTuition);
+										}
+										
+										else {
+											System.out.println("Invalid type");
+										}
+										
+									}
+									
+									else if (option == 4 ) {
+										System.out.println("Bye!");
+									}
+									
+									else {
+										System.out.println("Invalid option");
+									}
+								}
+							}
+							
+							else if (optionTMS == 5) {
 								System.out.println("Bye!");
 							}
 							
@@ -631,8 +689,19 @@ public class C206_CaseStudy {
 		System.out.println("1. Register Student Account");
 		System.out.println("2. View Student Account");
 		System.out.println("3. Delete Student Account");
-		System.out.println("4. Quit for System");
+		System.out.println("4. Manage Student's Tuition");
+		System.out.println("5. Quit");
 		Helper.line(100, "-");
+		
+	}
+	
+	public static void menuMST() {
+		TuitionManagementSystem.setHeader("Manage Student Tuition");
+		System.out.println("1. Update Student Feedback");
+		System.out.println("2. Update Upcoming Tuition");
+		System.out.println("3. View");
+		System.out.println("4. Quit for System");
+		Helper.line(170, "-");
 		
 	}
 	
@@ -648,9 +717,8 @@ public class C206_CaseStudy {
 		}
 		String dob = Helper.readString("Enter your dob (Format(ddMMMyy))> ");
 		String cor = Helper.readString("Enter your country of Residence> ");
-		String feedback = "";
 
-		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor, feedback);
+		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor);
 		return sa;
 	}
 	
@@ -716,6 +784,76 @@ public class C206_CaseStudy {
 			return false;
 		}
 	}
+	
+	//Sprint 2 - Manage Student Tuition Viewing for feedback and upcoming tuition
+	public static TuitionFeedback tuition() {
+		String name = Helper.readString("Enter name: ");
+		String tuitioncode = Helper.readString("Enter Tuition Code: ");
+		String tuitionTitle = Helper.readString("Enter Tuition Title: ");
+		String feedback = Helper.readString("Enter feedback: ");
+		
+		TuitionFeedback tf = new TuitionFeedback(name, tuitioncode, tuitionTitle, feedback);
+		return tf;
+	
+	}
+	
+	public static void updateStudentFeedback (ArrayList<TuitionFeedback> TFeedback, TuitionFeedback tf ) {
+		
+		
+		TFeedback.add(tf);
+		System.out.println("***Updated Successfully");
+
+	}
+	
+	public static String retrieveFeedback (ArrayList<TuitionFeedback> TFeedback) {
+		String output = "";
+		
+		for (int i = 0; i < TFeedback.size(); i ++) {
+			output += String.format("%-110s\n", TFeedback.get(i).toString());
+		}
+		return output;
+	}
+	
+	public static void viewFeedback (ArrayList<TuitionFeedback> TFeedback ) {
+		String output = String.format("%-10s %-20s %-20s %-60s\n", "Name", "Tuition Code", "Tuition Title", "Feedback");
+		output += retrieveFeedback(TFeedback);
+		System.out.println(output);
+	} 
+	
+	
+	public static UpcomingTuition Upcomingtuition() {
+		String name = Helper.readString("Enter name: ");
+		String tuitioncode = Helper.readString("Enter Tuition Code: ");
+		String tuitionTitle = Helper.readString("Enter Tuition Title: ");
+		String date = Helper.readString("Enter date: ");
+		
+		UpcomingTuition ut = new UpcomingTuition(name, tuitioncode, tuitionTitle, date);
+		return ut;
+	
+	}
+	
+	public static void updateStudentUpcomingTuition(ArrayList<UpcomingTuition> UTuition, UpcomingTuition ut ) {
+		
+		
+		UTuition.add(ut);
+		System.out.println("***Updated Successfully");
+
+	}
+	
+	public static String viewUpcomingTuition (ArrayList<UpcomingTuition> UTuition) {
+		String output = "";
+		
+		for (int i = 0; i < UTuition.size(); i ++) {
+			output += String.format("%-70s\n", UTuition.get(i).toString());
+		}
+		return output;
+	}
+	
+	public static void retrieveStudentUpcomingTuition (ArrayList<UpcomingTuition> UTuition ) {
+		String output = String.format("%-10s %-20s %-20s %-20s\n", "Name", "Tuition Code", "Tuition Title", "Date");
+		output += viewUpcomingTuition(UTuition);
+		System.out.println(output);
+	} 
 //============================================= ZU ER - END =============================================		
 	
 }
