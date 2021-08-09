@@ -85,9 +85,35 @@ public class RegistrationMainTest {
 		assertTrue("Test if an available item is ok to be deleted?", ok);
 		//error condition
 		ok = RegistrationMain.doDeletionRegistration(registrationList, 3,"ravi@yahoo.com");
-		assertFalse("Test if an invalid/non-existing tuition code is able to delete?", ok);	
+		assertFalse("Test if an invalid/non-existing registration code is able to delete?", ok);	
 
 	}
+//	@Test
+//	//Sprint 2
+//	public void retrieveSearchRegistration() {
+//		assertNotNull("Test if there is valid Registration arraylist to retrieve registration", registrationList);
+//		String registration = RegistrationMain.retrieveSearchRegistration(registrationList,1);
+//		String testOutput2 =String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID"
+//				,"Timetable ID",
+//				"Email","Status","Date");
+//		assertSame("Check that Registration list is empty", testOutput2, registration);
+//		RegistrationMain.addNewRegistration(registrationList,r1);
+//		assertEquals("Test that registration arraylist size is 1", 1, registrationList.size());
+//		registration = RegistrationMain.retrieveSearchRegistration(registrationList,1);
+//		LocalDate date=LocalDate.now();
+//		String datestring=String.valueOf(date);
+//		testOutput2 = String.format("%-25d %-20d %-40s %-15s %s\n",1,1,RegistrationMain.obscure("ravi@gmail.com"),"Pending",datestring);
+//		assertEquals("Test that Registration", testOutput2, registration);
+//		String onlineregistration = RegistrationMain.retrieveSearchRegistration(registrationList,2);
+//		String testOutput3 = "";
+//		assertEquals("Check that ViewOnlineregistration", testOutput3, onlineregistration);
+//		RegistrationMain.addNewRegistration(registrationList, r2);
+//		assertEquals("Test that registration arraylist size is 2", 2, registrationList.size());
+//		onlineregistration = RegistrationMain.retrieveSearchRegistration(registrationList,2);
+//		testOutput3 = String.format("%-25d %-20d %-40s %-15s %s\n",2,2,RegistrationMain.obscure("ravichandran@gmail.com"),"Pending",datestring);
+//		assertEquals("Test that ViewOnlineregistration", testOutput3, onlineregistration);
+//
+//	}
 	
 	@After
 	public void tearDown() throws Exception {
