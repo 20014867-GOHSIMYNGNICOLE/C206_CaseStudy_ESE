@@ -35,8 +35,8 @@ public class C206_CaseStudy {
 		tuitionList.add(new Tuition("TT04", "Technology", "GroupD", "techy", "5 hour", "java", "online", "online"));
 		
 		//nehla - test data
-		enquiryList.add(new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending", ""));
-		enquiryList.add(new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15","Email","Completed", ""));
+		enquiryList.add(new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending", "online" , "Urgent"));
+		enquiryList.add(new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15","Email","Completed", "f2f", "Non-Urgent"));
 		
 		//zu er - test data
 		UTuition.add(new UpcomingTuition("Alice", "C1", "Englisg Language", "25 Aug 2021"));
@@ -529,9 +529,10 @@ public class C206_CaseStudy {
 		String time = Helper.readString("Enter time in (TT.MM) > ");
 		String enquiryMethod = Helper.readString("Enter enquiry method > ");
 		String status = Helper.readString("Enter enquiry status > ");
-		String mode = Helper.readString("Mode for enquiry: ");
+		String mode = Helper.readString("Mode for enquiry > ");
+		String Type = Helper.readString("Enter Type of enquiry >");
 			
-		Enquiry en = new Enquiry(id, title, date, time, enquiryMethod, status, mode);
+		Enquiry en = new Enquiry(id, title, date, time, enquiryMethod, status, mode, Type);
 		return en;
 		}
 		public static void addNewEnquiry(ArrayList<Enquiry>enquiryList, Enquiry en) {

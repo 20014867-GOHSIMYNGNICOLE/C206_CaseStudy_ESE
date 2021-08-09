@@ -16,9 +16,10 @@ public class Enquiry {
 	private String enquiryMethod;
 	private String status;
 	private String mode;
+	private String Type;
 	
 	public Enquiry(int enquiryId, String title, String date, String time, String enquiryMethod, String status,
-			String mode) {
+			String mode, String Type ) {
 		super();
 		this.enquiryId = enquiryId;
 		this.title = title;
@@ -27,6 +28,21 @@ public class Enquiry {
 		this.enquiryMethod = enquiryMethod;
 		this.status = status;
 		this.mode = mode;
+		this.Type = Type;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return Type;
 	}
 
 	/**
@@ -86,7 +102,8 @@ public class Enquiry {
 				time,
 				enquiryMethod,
 				status,
-				mode);
+				mode,
+				Type);
 		return output;
 	}
 	

@@ -20,8 +20,8 @@ public class EnquiryMainTest{
 	private ArrayList<Enquiry> enquiryList;
 	@Before
 	public void setUp() throws Exception {
-		en1 = (new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending",""));
-		en2 = (new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed",""));
+		en1 = (new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending","online", "Urgent"));
+		en2 = (new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed","f2f" , "Non-Urgent"));
 		
 		enquiryList = new ArrayList<Enquiry>();
 		
@@ -32,9 +32,9 @@ public class EnquiryMainTest{
 	
 	
 	@Test
-		public void addEnquiryTest()
+		public void addEnquiryTest() 
 		{
-			// Item list is not null, so that can add a new enquiry - boundary
+			// Enquiry list is not null, so that can add a new enquiry - boundary
 				assertNotNull("Test if there is valid enquiry arraylist to add to", enquiryList);
 				//Given an empty list, after adding 1 enquiry, the size of the list is 1 - normal
 				//The enquiry just added is as same as the first enquiry of the list

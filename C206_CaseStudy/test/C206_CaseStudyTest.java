@@ -60,8 +60,8 @@ public class C206_CaseStudyTest {
 		tuitionList= new ArrayList<Tuition>();
 		
 		//nehla - prepare test data
-		en1 = (new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending",""));
-		en2 = (new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed",""));
+		en1 = (new Enquiry(1,"How to register", "2021-7-20", "09.15", "Email","Pending","", ""));
+		en2 = (new Enquiry(2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed","", ""));
 		enquiryList = new ArrayList<Enquiry>();
 	 
 		//ravi - prepare test data
@@ -247,8 +247,8 @@ public class C206_CaseStudyTest {
 			//Test if the expected output same as the list of enquiryList retrieved from the C206_CaseStudy
 			allEnquiry = C206_CaseStudy.viewAllEnquiry(enquiryList);
 			testOutput = String.format("");
-			testOutput = String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n", 1,"How to register", "2021-7-20", "09.15", "Email","Pending", "");
-			testOutput += String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n",2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed", "");
+			testOutput = String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n", 1,"How to register", "2021-7-20", "09.15", "Email","Pending", "online" , "Urgent");
+			testOutput += String.format("%-15s %-20s %-15s %-15s %-20s %-10s\n",2,"Tuition Fee", "2021-7-5", "13.15", "Email","Completed", "f2f" , "Non-Urgent");
 			
 		//	assertEquals("Test viewEnquiry", testOutput, allEnquiry);
 		
