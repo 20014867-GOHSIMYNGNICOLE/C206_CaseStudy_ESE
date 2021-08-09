@@ -129,7 +129,8 @@ public class RegistrationMain {
 		}
 		return isDeleted;
 	}
-
+	
+	
 	public static void deleteRegistration(ArrayList<Registration> registrationList) {
 		RegistrationMain.viewAllRegistration(registrationList);
 		int regid = Helper.readInt("Enter Registration ID to delete > ");
@@ -143,6 +144,7 @@ public class RegistrationMain {
 		}
 	}
 	
+	//======= Option 4: Search Registration ============
 	public static String retrieveSearchRegistration(ArrayList<Registration> registrationList, int id) {
 		String output = "";
 		boolean found=false;
@@ -165,7 +167,7 @@ public class RegistrationMain {
 	}
 	public static void viewSearchedRegistration(ArrayList<Registration> registrationList, int regid) {
 		
-		TuitionMain.setHeader("Registration List");
+		RegistrationMain.setHeader("Registration List");
 		String output = String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID"
 				,"Timetable ID",
 				"Email","Status","Date");

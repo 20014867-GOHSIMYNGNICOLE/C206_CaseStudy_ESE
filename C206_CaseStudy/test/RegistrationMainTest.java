@@ -88,8 +88,8 @@ public class RegistrationMainTest {
 		assertFalse("Test if an invalid/non-existing registration code is able to delete?", ok);	
 
 	}
-//	@Test
-//	//Sprint 2
+	@Test
+	//Sprint 2
 //	public void retrieveSearchRegistration() {
 //		assertNotNull("Test if there is valid Registration arraylist to retrieve registration", registrationList);
 //		String registration = RegistrationMain.retrieveSearchRegistration(registrationList,1);

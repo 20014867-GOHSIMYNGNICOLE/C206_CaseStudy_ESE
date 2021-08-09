@@ -54,7 +54,7 @@ public class C206_CaseStudy {
 					//nicole - Tuition (manage)
 					if(taOption == 1) {
 						int tuitionOption = 0;
-						while (tuitionOption != OPTION_QUIT) {
+						while (tuitionOption != 6) {
 							C206_CaseStudy.setHeader("TUITION ADMINISTRATOR");
 							C206_CaseStudy.TuitionMenu();
 							tuitionOption = Helper.readInt("Enter the option: ");
@@ -202,7 +202,7 @@ public class C206_CaseStudy {
 		else if (option == OPTION_STUDENT) {
 			//Student
 			int regisOption=0;
-			while(regisOption!=OPTION_QUIT) {
+			while(regisOption!=5) {
 				menu();
 				option = Helper.readInt("Enter an option > ");
 				if(regisOption==1) {
@@ -221,7 +221,12 @@ public class C206_CaseStudy {
 					C206_CaseStudy.setHeader("DELETE REGISTRATION");
 					C206_CaseStudy.deleteRegistration(registrationList);
 				}
-				if(regisOption!=1&&regisOption!=2&&regisOption!=3) {
+				if(option==4) {
+					RegistrationMain.setHeader("SEARCH REGISTRATION");
+					int regid=Helper.readInt("Enter Registration ID > ");
+					RegistrationMain.viewSearchedRegistration(registrationList, regid);
+				}
+				else if(option!=1&&option!=2&&option!=3&&option!=4) {
 					System.out.println("Invalid option entered!");
 					Helper.line(80, "-");
 				}
@@ -275,7 +280,9 @@ public class C206_CaseStudy {
 		System.out.println("1. Add New Tuition");
 		System.out.println("2. View Tuition");
 		System.out.println("3. Delete Tuition");
-		System.out.println("4. Back to Home Page");
+		System.out.println("4. Update Tuition");
+		System.out.println("5. Search Tuition by Modes");
+		System.out.println("6. Back to Home Page");
 	}
 	
 	//======= Search Tuition Mode Menu ========= Sprint 2
@@ -499,7 +506,8 @@ public class C206_CaseStudy {
 		System.out.println("1. Register for a tuition timetable");
 		System.out.println("2. View all Registrations");
 		System.out.println("3. Delete Registration");
-		System.out.println("4. Quit");
+		System.out.println("4. Search Registration");
+		System.out.println("5. Quit");
 	}
 	public static String obscure(String inStr) {
 		String rtnVal = "";
@@ -576,6 +584,37 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Registration ID "+regid+" is deleted");
 		}
+	}
+	
+	//======= Option 4: Search Registration ============
+	public static String retrieveSearchRegistration(ArrayList<Registration> registrationList, int id) {
+		String output = "";
+		boolean found=false;
+			for (int i=0; i<registrationList.size(); i++) {
+				if(registrationList.get(i).getRegistrationid()==id) {
+					output += String.format("%-25d %-20d %-40s %-15s %s\n",
+							registrationList.get(i).getRegistrationid()
+							,registrationList.get(i).getTuitiontimetableid(),
+							obscure(registrationList.get(i).getStudentemail())
+							,registrationList.get(i).getStatus(),
+							registrationList.get(i).getRegistrationdate());
+					found=true;
+				}
+			}
+			if(found==false) {
+				output="Registration ID not found";
+			}
+			
+		return output;
+	}
+	public static void viewSearchedRegistration(ArrayList<Registration> registrationList, int regid) {
+			
+		C206_CaseStudy.setHeader("Registration List");
+		String output = String.format("%-25s %-20s %-40s %-15s %s\n","Registration ID"
+				,"Timetable ID",
+				"Email","Status","Date");
+		output += retrieveSearchRegistration(registrationList, regid);
+		System.out.println(output);
 	}
 //============================================= RAVI - END ================================================	
 
