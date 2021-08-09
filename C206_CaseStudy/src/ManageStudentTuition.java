@@ -72,7 +72,7 @@ public class ManageStudentTuition {
 		}
 		
 		
-
+ 
 	}
 	
 	public static void menu() {
