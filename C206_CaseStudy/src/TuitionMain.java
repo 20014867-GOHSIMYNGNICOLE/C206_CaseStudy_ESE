@@ -155,8 +155,9 @@ public class TuitionMain {
 			System.out.println("Tuition (" + tuitionCode + ") is deleted");
 		}
 	}
-//============================================= NICOLE - END ======================================
-	
+//============================================= NICOLE - END =================================================
+
+
 	public static void mainTMMenu() {
 		TuitionMain.setHeader("TUITION MANAGEMENT APP");
 		System.out.println("Login via:");

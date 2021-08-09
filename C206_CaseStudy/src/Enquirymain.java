@@ -30,10 +30,7 @@ public class Enquirymain {
 
 			while (option != OPTION_QUIT) {
 
-				Enquirymain.menu();
-				option = Helper.readInt("Enter an option > ");
-				Helper.line(80, "-");
-				if (option == 2) {
+				
 					// Tuition Manager
 	int enquiryOption = 0;
 	Enquirymain.setHeader("TUITION MANAGER");
@@ -51,7 +48,7 @@ public class Enquirymain {
 
 						else if (enquiryOption == 2) {
 							
-	//Add New Tuition
+	                   //Add New Enquiry
 							Enquirymain.setHeader("ADD NEW ENQUIRY");
 							Enquiry en = inputEnquiry();
 							Enquirymain.addNewEnquiry(enquiryList, en);
@@ -61,10 +58,7 @@ public class Enquirymain {
 							//Delete Enquiry
 							Enquirymain.setHeader("DELETE ENQUIRY");
 							Enquirymain.deleteEnquiry(enquiryList);
-						}
-						else if (enquiryOption == 4) {
-							Enquirymain.menu();
-							option = Helper.readInt("Enter an option > ");
+						
 						}
 						else {
 							System.out.println("Invalid option entered");
@@ -73,7 +67,7 @@ public class Enquirymain {
 				}
 			}
 					
-				}
+				
 	//====START=====//			
 	public static void EnquiryMenu() {
 			Enquirymain.setHeader("Enquiry Menu");
@@ -160,14 +154,5 @@ public class Enquirymain {
 	
 
 
-		public static void menu() {
-			TuitionMain.setHeader("TUITION MANAGEMENT APP");
-			System.out.println("Login via:");
-			System.out.println("1. Tuition Administrator");
-			System.out.println("2. Tuition Manager");
-			System.out.println("3. Student");
-			System.out.println("4. Quit");
-			Helper.line(80, "-");
-		}
-
+		
 	}

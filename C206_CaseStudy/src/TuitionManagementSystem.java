@@ -1,5 +1,7 @@
 
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 
 public class TuitionManagementSystem {
 	
-	public static final int OPTION_QUIT = 5;
+	public static final int OPTION_QUIT = 4;
 	
 	
 
@@ -46,14 +48,10 @@ public class TuitionManagementSystem {
 				
 			}
 			
-			else if (option == 4) {
-				//Update student account
-				TuitionManagementSystem.updateStudentAcc(StudentList);
-			}
-			
-			else if (option == 5 ) {
+			else if (option == 4 ) {
 				System.out.println("Bye!");
 			}
+			
 			
 			else {
 				System.out.println("Invalid option");
@@ -68,16 +66,15 @@ public class TuitionManagementSystem {
 		System.out.println("1. Register Student Account");
 		System.out.println("2. View Student Account");
 		System.out.println("3. Delete Student Account");
-		System.out.println("4. Update Student Account");
-		System.out.println("5. Quit for System");
-		Helper.line(100, "-");
+		System.out.println("4. Quit for System");
+		Helper.line(170, "-");
 		
 	}
 	
 	public static void setHeader(String header) {
-		Helper.line(100, "-");
+		Helper.line(170, "-");
 		System.out.println(header);
-		Helper.line(100, "-");
+		Helper.line(170, "-");
 	}
 	
 	public static StudentAccount registerAcc() {
@@ -92,9 +89,8 @@ public class TuitionManagementSystem {
 		}
 		String dob = Helper.readString("Enter your dob (Format(ddMMMyy))> ");
 		String cor = Helper.readString("Enter your country of Residence> ");
-		String feedback = "";
 
-		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor, feedback);
+		StudentAccount sa = new StudentAccount(name, gender, mobile, email, dob, cor);
 		return sa;
 	}
 	
@@ -110,13 +106,13 @@ public class TuitionManagementSystem {
 		String output = "";
 		
 		for (int i = 0; i < StudentList.size(); i ++) {
-			output += String.format("%-80s\n", StudentList.get(i).toString());
+			output += String.format("%-90s\n", StudentList.get(i).toString());
 		}
 		return output;
 	}
 	
 	public static void viewStudentAccount (ArrayList<StudentAccount> StudentList ) {
-		String output = String.format("%-10s %-10s %-10s %-20s %-20s %-20s\n", "Name", "Gender", "Mobile No", "Email", "Date of Birth", "Country of Residence");
+		String output = String.format("%-10s %-10s %-10s %-20s %-20s %-30s\n", "Name", "Gender", "Mobile No", "Email", "Date of Birth", "Country of Residence");
 		output += retrieveAllStudentAccount(StudentList);
 		System.out.println(output);
 	}
@@ -147,20 +143,6 @@ public class TuitionManagementSystem {
 			System.out.println("***" + Name + " is deleted!");
 		}
 	}
-	
-	public static StudentAccount doUpdateStudentAccount() {
-		String feedback = Helper.readString("Give your feedback: ");
-		
-		
-		StudentAccount
-
-		
-	}
-	
-	public static void updateStudentAccount (ArrayList<StudentAccount> StudentList) {
-		
-	}
-	 
 	
 	private static boolean isValid(String email)
 	{
